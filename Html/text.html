@@ -1,0 +1,198 @@
+// Canvas LMS Clone - Basic Structure (React + Tailwind)
+// Folder structure assumed:
+// - src/
+//   - components/
+//   - pages/
+//   - data/
+//   - App.jsx
+//   - main.jsx
+
+// src/main.jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import { BrowserRouter } from 'react-router-dom';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
+);
+
+// src/App.jsx
+import { Routes, Route } from 'react-router-dom';
+import Dashboard from './pages/Dashboard';
+import CourseDetail from './pages/CourseDetail';
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Dashboard />} />
+      <Route path="/courses/:id" element={<CourseDetail />} />
+    </Routes>
+  );
+}
+
+// src/pages/Dashboard.jsx
+import Sidebar from '../components/Sidebar';
+import Header from '../components/Header';
+import CourseCard from '../components/CourseCard';
+import ToDoList from '../components/ToDoList';
+import courses from '../data/courses.json';
+import tasks from '../data/todo.json';
+
+export default function Dashboard() {
+  return (
+    <div className="flex min-h-screen">
+      <Sidebar />
+      <div className="flex-1 p-4 bg-gray-50">
+        <Header name="John Doe" />
+        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-6">
+          {courses.map(course => (
+            <CourseCard key={course.id} course={course} />
+          ))}
+        </div>
+        <div className="mt-8">
+          <ToDoList tasks={tasks} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// src/pages/CourseDetail.jsx
+import { useParams } from 'react-router-dom';
+import Sidebar from '../components/Sidebar';
+import Breadcrumb from '../components/Breadcrumb';
+import courses from '../data/courses.json';
+
+export default function CourseDetail() {
+  const { id } = useParams();
+  const course = courses.find(c => c.id === parseInt(id));
+
+  if (!course) return <div className="p-4">Course not found</div>;
+
+  return (
+    <div className="flex min-h-screen">
+      <Sidebar />
+      <div className="flex-1 p-4 bg-gray-50">
+        <Breadcrumb path={["Dashboard", course.title]} />
+        <div className="mt-4">
+          <h2 className="text-2xl font-bold">{course.title}</h2>
+          <p className="text-gray-500">Instructor: {course.instructor}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// src/components/Sidebar.jsx
+import { useState } from 'react';
+import { FaBars } from 'react-icons/fa';
+
+export default function Sidebar() {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="md:w-64 w-20 bg-blue-600 text-white min-h-screen flex flex-col">
+      <div className="flex md:hidden p-4">
+        <button onClick={() => setOpen(!open)} className="text-white text-2xl">
+          <FaBars />
+        </button>
+      </div>
+      <ul className={`space-y-4 p-4 md:block ${open ? 'block' : 'hidden'}`}>
+        <li className="cursor-pointer">Dashboard</li>
+        <li className="cursor-pointer">Courses</li>
+        <li className="cursor-pointer">Calendar</li>
+        <li className="cursor-pointer">Inbox</li>
+        <li className="cursor-pointer">Help</li>
+      </ul>
+    </div>
+  );
+}
+
+// src/components/Header.jsx
+export default function Header({ name }) {
+  const date = new Date().toLocaleDateString();
+  return (
+    <div className="flex justify-between items-center bg-white p-4 rounded shadow">
+      <h1 className="text-xl font-semibold">Welcome, {name}</h1>
+      <span className="text-gray-600">{date}</span>
+    </div>
+  );
+}
+
+// src/components/CourseCard.jsx
+import { Link } from 'react-router-dom';
+
+export default function CourseCard({ course }) {
+  return (
+    <div className="bg-white shadow-md p-4 rounded-lg hover:shadow-lg transition">
+      <h3 className="font-bold text-lg">{course.title}</h3>
+      <p className="text-sm text-gray-500">{course.instructor}</p>
+      <div className="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+        <div className="bg-blue-500 h-2.5 rounded-full" style={{ width: `${course.progress}%` }}></div>
+      </div>
+      <Link
+        to={`/courses/${course.id}`}
+        className="mt-2 inline-block bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700"
+      >
+        Go to Course
+      </Link>
+    </div>
+  );
+}
+
+// src/components/ToDoList.jsx
+export default function ToDoList({ tasks }) {
+  return (
+    <div className="bg-white p-4 rounded shadow">
+      <h2 className="text-xl font-semibold mb-4">To-Do List</h2>
+      <ul className="space-y-2">
+        {tasks.map(task => (
+          <li key={task.id} className="flex items-center gap-2">
+            <input type="checkbox" id={`task-${task.id}`} className="accent-blue-600" />
+            <label htmlFor={`task-${task.id}`} className="flex-1">
+              {task.task} <span className="text-gray-500 text-sm">(Due: {task.due})</span>
+            </label>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+// src/components/Breadcrumb.jsx
+export default function Breadcrumb({ path }) {
+  return (
+    <nav className="text-sm text-gray-500">
+      {path.map((item, index) => (
+        <span key={index}>
+          {item}
+          {index < path.length - 1 && ' > '}
+        </span>
+      ))}
+    </nav>
+  );
+}
+
+// src/data/courses.json
+[
+  { "id": 1, "title": "Math 101", "instructor": "Dr. Smith", "progress": 60 },
+  { "id": 2, "title": "History 201", "instructor": "Prof. Adams", "progress": 80 },
+  { "id": 3, "title": "Biology 301", "instructor": "Dr. Green", "progress": 45 },
+  { "id": 4, "title": "English 102", "instructor": "Ms. Stone", "progress": 70 },
+  { "id": 5, "title": "Chemistry 105", "instructor": "Dr. White", "progress": 55 },
+  { "id": 6, "title": "Physics 210", "instructor": "Dr. Black", "progress": 90 }
+]
+
+// src/data/todo.json
+[
+  { "id": 1, "task": "Read Chapter 1", "due": "2025-07-26" },
+  { "id": 2, "task": "Submit assignment", "due": "2025-07-27" },
+  { "id": 3, "task": "Review quiz answers", "due": "2025-07-28" }
+]
+
+// tailwind.config.js and index.css assumed initialized correctly
