@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resume Website Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: olive;
+    }
+    h2 {
+      color: #333;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 8px;
+      text-align: left;
+    }
+    caption {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    form {
+      margin-top: 30px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    iframe {
+      margin-top: 30px;
+      width: 100%;
+      height: 315px;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Ordered Lists</h2>
+  <ol type="1">
+    <li>Numbered List</li>
+    <li>Basic Order</li>
+  </ol>
+  <ol type="A">
+    <li>Uppercase Alphabet</li>
+    <li>Continues...</li>
+  </ol>
+  <ol type="a">
+    <li>Lowercase Alphabet</li>
+    <li>More Items</li>
+  </ol>
+  <ol type="I">
+    <li>Upper Roman</li>
+    <li>Classic Style</li>
+  </ol>
+  <ol type="i">
+    <li>Lower Roman</li>
+    <li>Old Style</li>
+  </ol>
+
+  <h2>Unordered List</h2>
+  <ul>
+    <li>Bullet Point One</li>
+    <li>Bullet Point Two</li>
+  </ul>
+
+  <h2>Sample Table</h2>
+  <table>
+    <caption>Project Experience</caption>
+    <thead>
+      <tr>
+        <th colspan="3">Project Details</th>
+        <th>Year</th>
+      </tr>
+      <tr>
+        <th>Project Name</th>
+        <th>Role</th>
+        <th>Technology</th>
+        <th>Year</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Portfolio Website</td>
+        <td>Frontend Developer</td>
+        <td>HTML, CSS, JS</td>
+        <td>2024</td>
+      </tr>
+      <tr>
+        <td>Todo App</td>
+        <td>Full Stack Dev</td>
+        <td>MERN Stack</td>
+        <td>2025</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Contact Me</h2>
+  <form>
+    <label for="name">Full Name:</label>
+    <input type="text" id="name" placeholder="Your Name" required />
+
+    <label for="email">Email Address:</label>
+    <input type="email" id="email" placeholder="your@email.com" required />
+
+    <label for="subject">Subject:</label>
+    <input type="text" id="subject" placeholder="Subject" />
+
+    <label for="message">Message:</label>
+    <textarea id="message" rows="5" placeholder="Write your message here..."></textarea>
+
+    <input type="submit" value="Send Message" style="margin-top: 10px;" />
+  </form>
+
+  <h2>Watch My Intro Video</h2>
+  <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+    title="YouTube video" allowfullscreen></iframe>
+
+</body>
+</html>

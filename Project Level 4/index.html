@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Level 3 HTML Project</title>
+  
+  <!-- Embedded CSS -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    /* Header */
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 15px 0;
+      overflow: auto;
+    }
+
+    header .logo {
+      height: 40px;
+      float: left;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      height: 40px;
+    }
+
+    nav ul li {
+      margin-left: 20px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+
+    /* Main */
+    main {
+      background-color: #f4f4f4;
+      padding: 20px 0;
+    }
+
+    section, article, aside {
+      margin-bottom: 20px;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <!-- Placeholder for logo -->
+      <img src="https://.com/=Logo" alt="Logo" class="logo" />
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#articles">Articles</a></li>
+          <li><a href="#sidebar">Aside</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <section id="home">
+      <div class="container">
+        <h1>Welcome to My HTML Project</h1>
+        <p>This is a simple HTML layout using semantic tags and folder structure.</p>
+      </div>
+    </section>
+
+    <section id="articles">
+      <div class="container">
+        <article>
+          <h2>Article 1</h2>
+          <p>This is the first article content with structured HTML5 layout.</p>
+        </article>
+        <article>
+          <h2>Article 2</h2>
+          <p>This is the second article which is grouped and styled separately.</p>
+        </article>
+      </div>
+    </section>
+
+    <aside id="sidebar">
+      <div class="container">
+        <h2>Sidebar / Aside Section</h2>
+        <p>This section can contain advertisements, links, or additional info.</p>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container">
+      <p>Contact: example@email.com | &copy; 2025 HTML Project</p>
+    </div>
+  </footer>
+
+</body>
+</html>
